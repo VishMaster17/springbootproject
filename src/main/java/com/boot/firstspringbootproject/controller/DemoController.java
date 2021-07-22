@@ -39,11 +39,11 @@ public class DemoController {
 
 	@RequestMapping("/addEmp")
 	@ResponseBody
-	public String addEmp() {
-		Employee e = new Employee();
-		e.setEmpno(2);
-		e.setEname("Vish");
-		e.setJob("Manager");
+	public String addEmp(Employee e) {
+//		Employee e = new Employee();
+//		e.setEmpno(2);
+//		e.setEname("Vish");
+//		e.setJob("Manager");
 		oraDao.save(e);
 		postDao.save(e);
 		return "Added employee successfully";

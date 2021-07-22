@@ -8,5 +8,17 @@
 </head>
 <body>
 <h1>Welcome to spring boot application</h1>
+<h3>
+<form method="post" action="addEmp">
+Emp No <input type="number" name="empno"><br>
+Emp Name <input type="text" name="ename"><br>
+Job <input type="text" name="job"><br>
+Mgr <input type="number" name="mgr"><br>
+Sal <input type="number" name="sal"><br>
+<br>
+<input type="submit" value="INSERT">
+<input type="reset" value="RESET">
+</form>
+</h3>
 </body>
 </html>
