@@ -16,12 +16,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.boot.firstspringbootproject.model.Employee;
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "oracleEntityManagerFactory", transactionManagerRef = "oracletransactionManager", basePackages = {
-		"com.boot.firstspringbootproject.oradao" })
+		"com.boot.firstspringbootproject.oradao", "com.boot.firstspringbootproject.restdao" })
 public class OracleConfig {
 
 	@Primary
@@ -35,7 +33,7 @@ public class OracleConfig {
 	@Bean(name = "oracleEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean oracleEntityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("oracleDataSource") DataSource oracleDataSource) {
-		return builder.dataSource(oracleDataSource).packages(Employee.class).build();
+		return builder.dataSource(oracleDataSource).packages("com.boot.firstspringbootproject.model").build();
 	}
 
 	@Primary
