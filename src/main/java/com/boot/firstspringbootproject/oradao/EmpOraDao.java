@@ -7,5 +7,6 @@ import com.boot.firstspringbootproject.model.Employee;
 
 @Repository
 public interface EmpOraDao extends JpaRepository<Employee, Integer> {
+	
 
 }

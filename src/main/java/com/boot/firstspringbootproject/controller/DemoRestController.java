@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.boot.firstspringbootproject.model.Employee;
 import com.boot.firstspringbootproject.model.Student;
+import com.boot.firstspringbootproject.oradao.EmpOraDao;
 import com.boot.firstspringbootproject.oradao.StudentOraDao;
 
 @RestController
@@ -27,6 +29,9 @@ public class DemoRestController {
 
 	@Autowired
 	StudentOraDao studentOraDao;
+
+	@Autowired
+	EmpOraDao empOraDao;
 
 	@GetMapping(path = "/students")
 	public List<Student> getAllStudents() {
@@ -96,6 +101,13 @@ public class DemoRestController {
 	@GetMapping(path = "/students/school/{schoolName}")
 	public List<Student> getBySchool(@PathVariable String schoolName) {
 		return studentOraDao.findBySchool(schoolName);
+	}
+
+	@GetMapping(path = "/fetchEmpWithMoreSal", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Employee> fetchEmpWithMoreSal() {
+		List<Employee> empList = empOraDao.findAll();
+		return empList.stream().filter(e -> e.getSal() > e.getManager().getSal())
+		.collect(Collectors.toList());
 	}
 
 }
